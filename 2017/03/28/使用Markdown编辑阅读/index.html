@@ -75,6 +75,7 @@
 })();
 </script>
 
+<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
 <script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
 <script>AV.initialize("BO9eK46P9VzLNPSvO36RsbwT-gzGzoHsz", "cN4Bh7rj4G1oYaAyLhiAf2PE");</script>
 </head>
@@ -414,15 +415,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/28/我的第一篇文章/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/04/01/keyboard/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          我的第一篇文章
+          MAC禁用内置键盘
         
       </div>
     </a>
   
+  
+    <a href="/2017/03/28/我的第一篇文章/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">我的第一篇文章</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -494,7 +500,7 @@
 <!--page counter part-->
 <script>
 function addCount (Counter) {
-        url=$('.article-date').attr('href').trim();
+        url=$('.archive-article-date').attr('href').trim();
         title = $('.article-title').text().trim();
         var query=new AV.Query(Counter);
         //use url as unique idnetfication

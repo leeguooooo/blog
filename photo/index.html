@@ -50,6 +50,7 @@
 })();
 </script>
 
+<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
 <script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
 <script>AV.initialize("BO9eK46P9VzLNPSvO36RsbwT-gzGzoHsz", "cN4Bh7rj4G1oYaAyLhiAf2PE");</script>
 </head>
@@ -372,7 +373,7 @@
 <!--page counter part-->
 <script>
 function addCount (Counter) {
-        url=$('.article-date').attr('href').trim();
+        url=$('.archive-article-date').attr('href').trim();
         title = $('.article-title').text().trim();
         var query=new AV.Query(Counter);
         //use url as unique idnetfication
