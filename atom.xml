@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leeguoo.com/"/>
-  <updated>2017-04-01T02:56:01.000Z</updated>
+  <updated>2017-04-01T03:01:10.000Z</updated>
   <id>http://leeguoo.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://leeguoo.com/2017/04/01/keyboard/"/>
     <id>http://leeguoo.com/2017/04/01/keyboard/</id>
     <published>2017-04-01T02:52:41.000Z</published>
-    <updated>2017-04-01T02:56:01.000Z</updated>
+    <updated>2017-04-01T03:01:10.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="关于为什么要禁用内置键盘"><a href="#关于为什么要禁用内置键盘" class="headerlink" title="关于为什么要禁用内置键盘"></a>关于为什么要禁用内置键盘</h1><hr>
 <p>最近刚入手一个外置键盘, 最痛苦的就是键盘放置在内置键盘上会不小心压到按键。 还有在家办公的时候我家两只主子会按耐不住的霸占我的内置键盘，每次都是！@#￥%……&amp;<em>￥%……&amp;</em>（#￥%……&amp;<em>（）￥%……&amp;</em>（￥%……&amp;*， 家里养猫的同学都会懂。</p>
@@ -41,6 +41,8 @@
     
     </summary>
     
+    
+      <category term="MAC键盘" scheme="http://leeguoo.com/tags/MAC%E9%94%AE%E7%9B%98/"/>
     
   </entry>
   
