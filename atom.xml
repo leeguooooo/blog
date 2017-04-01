@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leeguoo.com/"/>
-  <updated>2017-03-28T10:06:00.000Z</updated>
+  <updated>2017-04-01T02:56:01.000Z</updated>
   <id>http://leeguoo.com/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MAC禁用内置键盘</title>
+    <link href="http://leeguoo.com/2017/04/01/keyboard/"/>
+    <id>http://leeguoo.com/2017/04/01/keyboard/</id>
+    <published>2017-04-01T02:52:41.000Z</published>
+    <updated>2017-04-01T02:56:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="关于为什么要禁用内置键盘"><a href="#关于为什么要禁用内置键盘" class="headerlink" title="关于为什么要禁用内置键盘"></a>关于为什么要禁用内置键盘</h1><hr>
+<p>最近刚入手一个外置键盘, 最痛苦的就是键盘放置在内置键盘上会不小心压到按键。 还有在家办公的时候我家两只主子会按耐不住的霸占我的内置键盘，每次都是！@#￥%……&amp;<em>￥%……&amp;</em>（#￥%……&amp;<em>（）￥%……&amp;</em>（￥%……&amp;*， 家里养猫的同学都会懂。</p>
+<a id="more"></a>
+<h1 id="如何禁用内置键盘值使用外置键盘呢？"><a href="#如何禁用内置键盘值使用外置键盘呢？" class="headerlink" title="如何禁用内置键盘值使用外置键盘呢？"></a>如何禁用内置键盘值使用外置键盘呢？</h1><hr>
+<p>要禁用Macbook键盘，请在终端中键入（或复制并粘贴）以下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/</div></pre></td></tr></table></figure></p>
+<p>解锁<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/</div></pre></td></tr></table></figure></p>
+<hr>
+<blockquote>
+<p>此外，我知道这是一个necrobump，但我没有看到这个解决方案在任何地方，这个线程有很多的意见。<br>````</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;关于为什么要禁用内置键盘&quot;&gt;&lt;a href=&quot;#关于为什么要禁用内置键盘&quot; class=&quot;headerlink&quot; title=&quot;关于为什么要禁用内置键盘&quot;&gt;&lt;/a&gt;关于为什么要禁用内置键盘&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;最近刚入手一个外置键盘, 最痛苦的就是键盘放置在内置键盘上会不小心压到按键。 还有在家办公的时候我家两只主子会按耐不住的霸占我的内置键盘，每次都是！@#￥%……&amp;amp;&lt;em&gt;￥%……&amp;amp;&lt;/em&gt;（#￥%……&amp;amp;&lt;em&gt;（）￥%……&amp;amp;&lt;/em&gt;（￥%……&amp;amp;*， 家里养猫的同学都会懂。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>使用Markdown</title>
