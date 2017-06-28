@@ -175,6 +175,67 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-navigationgoBack-踩坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/28/navigationgoBack-踩坑/">navigationgoBack()踩坑</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/28/navigationgoBack-踩坑/" class="archive-article-date">
+  	<time datetime="2017-06-28T10:08:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="react-navigation中的goBack-问题"><a href="#react-navigation中的goBack-问题" class="headerlink" title="react-navigation中的goBack()问题"></a>react-navigation中的goBack()问题</h1><hr>
+<blockquote>
+<p>react-navigation提供有goBack()这api, 但是使用返回栈中某个组件的方法this.props.navigation.goBack(‘component’)或this.props.navigation.dispatch(NavigationActions.back({key: “component”}))没有反应, 原理是因为这里的component不是用自定义的routeName而是用自动生成的随机值key. 又没有提供有api获取组件的key, 手动去获取又十分麻烦.</p>
+<p>如何才能让goBack()支持使用routeName呢, 这里找到了一个解决方案 issues;</p>
+<p>具体就是:</p>
+<p>把项目/node_modules/react-navigation/src/routers/StackRouter.js文件里的 const backRoute = state.routes.find((route: *) =&gt; route.key === action.key); 改成 const backRoute = state.routes.find(route =&gt; route.routeName === action.key);</p>
+<p>但不是很完美, 这里的component要填想返回的组件的前一个组件的routeName, 比如你的栈里顺序是home1, home2, home3, home4, 在home4里要返回home2, 使用this.props.navigation.goBack(‘home3’);; 并且又会带出一个问题: goBack()方法没反应了, 必须加个null进去, 写成goBack(null)…</p>
+<p>有点坑…</p>
+<p>不知有没有更好的解决方法…</p>
+</blockquote>
+<hr>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/28/navigationgoBack-踩坑/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+ 
+
+  
     <article id="post-angular-route" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -291,60 +352,6 @@
  
 
   
-    <article id="post-我的第一篇文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/28/我的第一篇文章/">我的第一篇文章</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/28/我的第一篇文章/" class="archive-article-date">
-  	<time datetime="2017-03-28T05:52:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>雪落无绪，梨花弄雨，美丽的相遇，春风依依。淡淡的年华似水，流逝的思念，没有谁不想走出爱的荆棘。</p>
-<p>一段感情的浓浓蜜意，只是为失落做了更深的苦凄，不是守不住颜花玫丽；因为风，因为雨，因为有太多的折磨经历。多想与你共谋岁月，同渡一生，只是你的影袂已在千里之外，相隔山水重重。<br>
-        
-          <a class="article-more-a" href="/2017/03/28/我的第一篇文章/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/28/我的第一篇文章/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
- 
-
-  
     <article id="post-使用Markdown编辑阅读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -388,6 +395,60 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/03/28/使用Markdown编辑阅读/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+ 
+
+  
+    <article id="post-我的第一篇文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/28/我的第一篇文章/">我的第一篇文章</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/28/我的第一篇文章/" class="archive-article-date">
+  	<time datetime="2017-03-28T05:52:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>雪落无绪，梨花弄雨，美丽的相遇，春风依依。淡淡的年华似水，流逝的思念，没有谁不想走出爱的荆棘。</p>
+<p>一段感情的浓浓蜜意，只是为失落做了更深的苦凄，不是守不住颜花玫丽；因为风，因为雨，因为有太多的折磨经历。多想与你共谋岁月，同渡一生，只是你的影袂已在千里之外，相隔山水重重。<br>
+        
+          <a class="article-more-a" href="/2017/03/28/我的第一篇文章/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/28/我的第一篇文章/">展开全文 >></a>
         </p>
       
 

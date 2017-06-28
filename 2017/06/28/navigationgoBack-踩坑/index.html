@@ -7,14 +7,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://leeguoo.com">
-  <title>Archives: 2017/3 | leeguooooo 的个人博客,欢迎光临!</title>
+  <title>navigationgoBack()踩坑 | leeguooooo 的个人博客,欢迎光临!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="leeguooooo 的个人博客,欢迎光临!">
-<meta property="og:url" content="http://leeguoo.com/archives/2017/03/index.html">
+  <meta name="description" content="react-navigation中的goBack()问题
+
+react-navigation提供有goBack()这api, 但是使用返回栈中某个组件的方法this.props.navigation.goBack(‘component’)或this.props.navigation.dispatch(NavigationActions.back({key: “component”}))没有反应,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="navigationgoBack()踩坑">
+<meta property="og:url" content="http://leeguoo.com/2017/06/28/navigationgoBack-踩坑/index.html">
 <meta property="og:site_name" content="leeguooooo 的个人博客,欢迎光临!">
+<meta property="og:description" content="react-navigation中的goBack()问题
+
+react-navigation提供有goBack()这api, 但是使用返回栈中某个组件的方法this.props.navigation.goBack(‘component’)或this.props.navigation.dispatch(NavigationActions.back({key: “component”}))没有反应,">
+<meta property="og:updated_time" content="2017-06-28T10:10:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leeguooooo 的个人博客,欢迎光临!">
+<meta name="twitter:title" content="navigationgoBack()踩坑">
+<meta name="twitter:description" content="react-navigation中的goBack()问题
+
+react-navigation提供有goBack()这api, 但是使用返回栈中某个组件的方法this.props.navigation.goBack(‘component’)或this.props.navigation.dispatch(NavigationActions.back({key: “component”}))没有反应,">
   
     <link rel="alternative" href="/atom.xml" title="leeguooooo 的个人博客,欢迎光临!" type="application/atom+xml">
   
@@ -173,77 +183,178 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-navigationgoBack-踩坑" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/使用Markdown编辑阅读/" class="archive-article-date">
-  	<time datetime="2017-03-28T05:52:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/使用Markdown编辑阅读/">使用Markdown</a>
+    <h1 class="article-title" itemprop="name">
+      navigationgoBack()踩坑
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/我的第一篇文章/" class="archive-article-date">
-  	<time datetime="2017-03-28T05:52:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
+        
+        <a href="/2017/06/28/navigationgoBack-踩坑/" class="archive-article-date">
+  	<time datetime="2017-06-28T10:08:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-28</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/我的第一篇文章/">我的第一篇文章</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="react-navigation中的goBack-问题"><a href="#react-navigation中的goBack-问题" class="headerlink" title="react-navigation中的goBack()问题"></a>react-navigation中的goBack()问题</h1><hr>
+<blockquote>
+<p>react-navigation提供有goBack()这api, 但是使用返回栈中某个组件的方法this.props.navigation.goBack(‘component’)或this.props.navigation.dispatch(NavigationActions.back({key: “component”}))没有反应, 原理是因为这里的component不是用自定义的routeName而是用自动生成的随机值key. 又没有提供有api获取组件的key, 手动去获取又十分麻烦.</p>
+<p>如何才能让goBack()支持使用routeName呢, 这里找到了一个解决方案 issues;</p>
+<p>具体就是:</p>
+<p>把项目/node_modules/react-navigation/src/routers/StackRouter.js文件里的 const backRoute = state.routes.find((route: *) =&gt; route.key === action.key); 改成 const backRoute = state.routes.find(route =&gt; route.routeName === action.key);</p>
+<p>但不是很完美, 这里的component要填想返回的组件的前一个组件的routeName, 比如你的栈里顺序是home1, home2, home3, home4, 在home4里要返回home2, 使用this.props.navigation.goBack(‘home3’);; 并且又会带出一个问题: goBack()方法没反应了, 必须加个null进去, 写成goBack(null)…</p>
+<p>有点坑…</p>
+<p>不知有没有更好的解决方法…</p>
+</blockquote>
+<hr>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/pay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aS27DMBAE0dz/0s42gCWjukcOQLK4MhJZ5MtiMh/+/OD1+rPufvv+5Pu6e57s8sCSIUPGsgy+8efjEvwLL342GTJknMMgYbT7FjrER/bnXWTIkCGDJ3Pp9k89I0OGDBkk4PKitEtAZciQIaNrkPGmWJdEfrEWlyFDxoKM9Cj/+fkr8w0ZMmQsxXiFi4RL8v5Jk+7ibTJkyNiawQNcN8JM4+TkPDJkyNibwcNcFyi7kpWE8jJNlCFDxoKMrsWfhs6nEtBbjAwZMo5hBElYmDiSA3WXz2TIkLE3g6diXdDsEsT4CogMGTK2ZvDX8RbYvNDlz6P8VIYMGYsz0tZ8V6aSEpTvePEGGTJkHMDoylEeoNMUMC6bZciQcQCDH4XnY2kJOtlRhgwZ5zC6ceMkpXvghogMGTIOYJBDT4JmBxtdtpAhQ8Z2DN4+I+VoGiK7lFSGDBmnMbqrYF1Q7krWbncZMmScxpiPBLra8+tlrQwZMpZi8CPOr02kAP5ZhgwZpzF4c21yUYMnlGXAlSFDxnYM3t6a56GoBAXfugi4MmTI2I7RXapIm3E8EJM/VjyDlSFDxuKMLtil7bZ0AJAmozJkyDiBwUMkTxDTn/MENB4MyJAhYyMGaX7xwJoelP8HuH1ShgwZMnAJyttk5FtBPitDhgwZeMuu3E0BF2+QIUPGAYxuGDApgIMpKxmCypAhY2tGWjpOrlmMDjEfZMqQIWM9xi/Pb3+t7bnVGwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/04/05/angular-route/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">angular-route</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
 
+ 
+  <section id="comments">
+<!--高速版，加载速度快，使用前需测试页面的兼容性-->
+<div id="SOHUCS" sid="navigationgoBack()踩坑"></div>
+<script>
+  (function(){
+    var appid = 'cysV46WiF',
+    conf = 'e81b6b98295fdee10d339b8220b98851';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+    window.SCS_NO_IFRAME = true;
+  })()
+</script>    
+  </section>
+  
 
           </div>
         </div>
@@ -265,8 +376,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
